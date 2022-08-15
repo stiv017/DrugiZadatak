@@ -1,7 +1,8 @@
 using SwagerApi.Models;
 
 using Microsoft.EntityFrameworkCore;
-
+using AutoMapper;
+using SwagerApi.DTO;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +15,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<SwagerContext>(o => {
     o.UseMySql(connectionString,ServerVersion.AutoDetect(connectionString));
     });
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

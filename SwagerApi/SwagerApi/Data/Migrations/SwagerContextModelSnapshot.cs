@@ -28,12 +28,7 @@ namespace SwagerApi.Data.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("IdGrupe");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Groups");
                 });
@@ -48,6 +43,9 @@ namespace SwagerApi.Data.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<int>("IdGrupe")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -56,19 +54,29 @@ namespace SwagerApi.Data.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<int>("Users")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("Users");
 
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("SwagerApi.Models.Groups", b =>
+            modelBuilder.Entity("SwagerApi.Models.Users", b =>
                 {
-                    b.HasOne("SwagerApi.Models.Users", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
+                    b.HasOne("SwagerApi.Models.Groups", "Groups")
+                        .WithMany("User")
+                        .HasForeignKey("Users")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Groups");
+                });
+
+            modelBuilder.Entity("SwagerApi.Models.Groups", b =>
+                {
                     b.Navigation("User");
                 });
 #pragma warning restore 612, 618

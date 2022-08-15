@@ -10,8 +10,8 @@ using SwagerApi.Models;
 namespace SwagerApi.Data.Migrations
 {
     [DbContext(typeof(SwagerContext))]
-    [Migration("20220804222831_createdatabase")]
-    partial class createdatabase
+    [Migration("20220815224834_createdatabase2")]
+    partial class createdatabase2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -19,6 +19,21 @@ namespace SwagerApi.Data.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "6.0.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
+
+            modelBuilder.Entity("SwagerApi.Models.Groups", b =>
+                {
+                    b.Property<int>("IdGrupe")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("IdGrupe");
+
+                    b.ToTable("Groups");
+                });
 
             modelBuilder.Entity("SwagerApi.Models.Users", b =>
                 {
@@ -30,6 +45,9 @@ namespace SwagerApi.Data.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<int>("IdGrupe")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -38,9 +56,30 @@ namespace SwagerApi.Data.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<int>("Users")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
+                    b.HasIndex("Users");
+
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("SwagerApi.Models.Users", b =>
+                {
+                    b.HasOne("SwagerApi.Models.Groups", "Groups")
+                        .WithMany("User")
+                        .HasForeignKey("Users")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Groups");
+                });
+
+            modelBuilder.Entity("SwagerApi.Models.Groups", b =>
+                {
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

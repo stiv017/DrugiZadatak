@@ -33,3 +33,5 @@ D:\KursnaLista\SwagerApi\SwagerApi\bin\Debug\net6.0\Microsoft.EntityFrameworkCor
 D:\KursnaLista\SwagerApi\SwagerApi\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
 D:\KursnaLista\SwagerApi\SwagerApi\bin\Debug\net6.0\MySqlConnector.dll
 D:\KursnaLista\SwagerApi\SwagerApi\bin\Debug\net6.0\Pomelo.EntityFrameworkCore.MySql.dll
+D:\KursnaLista\SwagerApi\SwagerApi\bin\Debug\net6.0\AutoMapper.dll
+D:\KursnaLista\SwagerApi\SwagerApi\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
