@@ -11,5 +11,6 @@ namespace SwagerApi.Models
         }
         public DbSet<Users> Users { get; set; } 
         public DbSet<Groups> Groups { get; set; }
+        
     }
 }
